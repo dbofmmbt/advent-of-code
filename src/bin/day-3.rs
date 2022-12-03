@@ -6,13 +6,9 @@ fn main() -> eyre::Result<()> {
     let priorities: i32 = lines
         .chunks(3)
         .flat_map(|chunk| {
-            chunk[0].iter().find(|el| {
-                chunk[1]
-                    .iter()
-                    .find(|other| el == other)
-                    .and_then(|_| chunk[2].iter().find(|other| el == other))
-                    .is_some()
-            })
+            chunk[0]
+                .iter()
+                .find(|el| chunk[1].contains(el) && chunk[2].contains(el))
         })
         .map(|el| -> i32 {
             if el >= &b'a' {
