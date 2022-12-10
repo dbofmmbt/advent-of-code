@@ -1,13 +1,15 @@
 fn main() -> eyre::Result<()> {
     let input = std::fs::read_to_string("input/day-6.txt")?;
 
+    const SIZE: usize = 14;
+
     let (idx, _) = input
         .chars()
         .enumerate()
-        .find(|(idx, _)| all_different(&input[*idx..(*idx + 4)]))
+        .find(|(idx, _)| all_different(&input[*idx..(*idx + SIZE)]))
         .unwrap();
 
-    println!("{}", idx + 4);
+    println!("{}", idx + SIZE);
 
     Ok(())
 }
